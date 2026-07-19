@@ -37,7 +37,32 @@ The winner is calculated after each round, and the final winner is determined by
 
 ## How to Run
 
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/yas-techie/rock-paper-scissors.git
+cd rock-paper-scissors
+```
+
+### 2. Compile the program
+
+```bash
+g++ rps.cpp -o rps
+```
+
+### 3. Run the executable
+
+**Windows:**
+```bash
+rps.exe
+```
+
+**Linux/macOS:**
+```bash
+./rps
+```
+
+## Download
+
+If you don't want to compile the project yourself, you can download the latest Windows executable from the **Releases** page.
+
