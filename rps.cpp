@@ -178,7 +178,32 @@ void printGame(stGameResult game)
 
     cout << "\t\t\t\t_____________________________________________________________________________\n" << endl;
 }
+
+void resetScreen()
+{
+    system("cls");
+    system("color 0F");
+}
+
+void startGame()
+{
+    char playAgain; 
+    do
+    {
+        resetScreen();
+        stGameResult game = playGame();
+        printGame(game);
+
+        cout << "Do you want to play again? Y/N \n";
+        cin>> playAgain;
+
+    } while (playAgain == 'y' || playAgain == 'Y');
+    
+}
+
 int main() 
 {
+    srand((unsigned)time(NULL));
+    startGame();
     return 0;
 }
