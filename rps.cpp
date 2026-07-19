@@ -71,6 +71,25 @@ enWinner roundWinner(stRound r)
     }
     
 }
+enWinner gameWinner(stGameResult g)
+{
+    if (g.playerWins > g.computerWins)
+    {
+        system("color 2F");
+        g.finalWinner = enWinner::Player1;
+    }
+    else if (g.computerWins > g.playerWins)
+    {   
+        system("color 4F");
+        cout<<"\a"; 
+        g.finalWinner = enWinner::Computer;
+    }
+    else
+        g.finalWinner = enWinner::Draw;
+        
+    return g.finalWinner;
+}
+
 
 string choiceName(enChoice choice)
 {
@@ -116,6 +135,49 @@ void printRound(stRound round)
     cout << "______________________________\n" << endl;
 }
 
+stGameResult playGame()
+{
+    stGameResult g;
+    g.totalRounds = readRound();
+
+    for (int i = 1; i <= g.totalRounds; i++)
+    {
+        stRound round = playRound(i);
+        
+        if (round.roundWinner == enWinner::Player1)
+            g.playerWins++;
+        else if (round.roundWinner == enWinner::Computer)
+            g.computerWins++;
+        else
+            g.draws++;  
+
+        printRound(round);
+    }
+
+    g.finalWinner = gameWinner(g);
+
+    return g;
+}
+
+void gameOver()
+{
+    cout << "\t\t\t\t_____________________________________________________________________________\n" << endl;
+    cout << "\t\t\t\t\t\t\t\t+++ Game Over +++" << endl;
+    cout << "\t\t\t\t_____________________________________________________________________________\n" << endl;    
+}
+void printGame(stGameResult game)
+{
+    gameOver();
+    cout << "\t\t\t\t_______________________________ [ Game Results ] ____________________________\n" << endl;
+
+    cout << "\t\t\t\tGame Rounds: " << game.totalRounds << endl;
+    cout << "\t\t\t\tPlayer Score: " << game.playerWins << endl;
+    cout << "\t\t\t\tComputer Score: " << game.computerWins << endl;
+    cout << "\t\t\t\tDraw times: " << game.draws << endl;
+    cout << "\t\t\t\tFinal Winner: " << winnerName(game.finalWinner) << endl;
+
+    cout << "\t\t\t\t_____________________________________________________________________________\n" << endl;
+}
 int main() 
 {
     return 0;
